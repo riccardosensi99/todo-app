@@ -26,7 +26,7 @@ router.get('/me', authenticate, async (req: Request, res: Response): Promise<voi
       res.status(404).json({ message: 'Utente non trovato' });
       return;
     }
-
+    console.log(user);
     res.status(200).json(user);
   } catch (error) {
     console.error(error);
