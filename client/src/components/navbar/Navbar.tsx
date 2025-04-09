@@ -12,7 +12,7 @@ export default function Navbar({ user, onLogout }: NavbarProps) {
       <h1>TodoApp</h1>
       {user && (
         <div className="navbar-right">
-          <span>Ciao, {user.name}</span>
+          <span>Ciao{user.name}</span>
           <button onClick={onLogout}>Logout</button>
         </div>
       )}
