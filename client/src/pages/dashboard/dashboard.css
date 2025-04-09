@@ -1,0 +1,144 @@
+html,body {
+  margin: 0;
+  padding: 0;
+  background-color: #111;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #fff;
+  height: 100%;
+}
+
+.dashboard-main {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+  align-items: center;
+}
+
+.todo-container {
+  background-color: #1e1e1e;
+  padding: 2rem;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 600px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.todo-title {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  color: #ffffff;
+}
+
+.new-task-input {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.new-task-input input {
+  flex: 1;
+  padding: 0.6rem;
+  border: none;
+  border-radius: 8px;
+  background-color: #2a2a2a;
+  color: #fff;
+}
+
+.add-btn {
+  background-color: #2d4fff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.6rem 1rem;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.add-btn:hover {
+  background-color: #2036c9;
+}
+
+.todo-list {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 1.5rem;
+}
+
+.todo-item {
+  background-color: #2a2a2a;
+  padding: 0.8rem 1rem;
+  margin-bottom: 0.8rem;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.2s ease;
+}
+
+.todo-item input[type="text"] {
+  flex: 1;
+  margin-right: 1rem;
+  padding: 0.4rem;
+  background-color: #333;
+  border: 1px solid #444;
+  border-radius: 6px;
+  color: #fff;
+}
+
+.todo-item.completed {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+.task-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-left: auto;
+}
+
+.task-actions button {
+  background: transparent;
+  border: none;
+  color: #bbb;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  padding: 0.2rem;
+}
+
+.task-actions button:hover {
+  color: #fff;
+}
+
+.pending-text {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #aaa;
+}
+
+.completed-title {
+  color: #ccc;
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+  border-top: 1px solid #333;
+  padding-top: 1rem;
+}
+
+@media (max-width: 600px) {
+  .todo-container {
+    padding: 1rem;
+  }
+
+  .todo-title {
+    font-size: 1.5rem;
+  }
+
+  .add-btn {
+    padding: 0.5rem 0.8rem;
+  }
+
+  .task-actions {
+    gap: 0.25rem;
+  }
+}
