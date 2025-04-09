@@ -26,6 +26,10 @@ export default function Register() {
   };
 
   return (
+    <>
+    <div className='login-header'>
+      <h1>Todo App</h1>
+    </div>
     <div className="register-container">
       <div className="register-wrapper">
         <h2>Registrati</h2>
@@ -60,5 +64,6 @@ export default function Register() {
         </p>
       </div>
     </div>
+    </>
   );
 }

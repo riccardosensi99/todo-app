@@ -39,7 +39,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const token = res.data.token;
     localStorage.setItem('token', token);
     setToken(token);
-    setTimeout(()=>navigate('/dashboard'), 1000);
+    navigate('/dashboard');
   };
 
   const logout = () => {

@@ -19,6 +19,10 @@ export default function Login() {
   };
 
   return (
+    <>
+    <div className='login-header'>
+      <h1>Todo App</h1>
+    </div>
     <div className="login-container">
       <div className="login-wrapper">
         <h2>Login</h2>
@@ -45,5 +49,6 @@ export default function Login() {
         </p>
       </div>
     </div>
+    </>
   );
 }
