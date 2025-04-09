@@ -19,6 +19,13 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const isAuthenticated = !!token;
 
+  const logout = () => {
+    localStorage.removeItem('token');
+    setToken(null);
+    setUser(null);
+    navigate('/');
+  };
+
   useEffect(() => {
     const fetchUser = async () => {
       if (token) {
@@ -28,32 +35,25 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
           setUser(res.data);
         } catch (err) {
           console.error('Errore nel recupero utente:', err);
-          logout(); 
+          logout();
         }
       }
     };
     fetchUser();
-  }, [token]);
+  }, [token, logout]);
 
   const login = async (email: string, password: string) => {
     const res = await api.post('/auth/login', { email, password });
     const token = res.data.token;
-  
+
     localStorage.setItem('token', token);
     setToken(token);
 
     const userRes = await api.get('/user/me');
     setUser(userRes.data);
-  
+
     console.log('LOGIN user:', userRes.data);
     navigate('/dashboard');
-  };
-
-  const logout = () => {
-    localStorage.removeItem('token');
-    setToken(null);
-    setUser(null);
-    navigate('/');
   };
 
   return (
