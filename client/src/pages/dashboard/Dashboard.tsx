@@ -73,7 +73,7 @@ export default function Dashboard() {
 
   const pendingTasks = tasks.filter(t => !t.completed);
   const completedTasks = tasks.filter(t => t.completed);
-
+  console.log('DASHBOARD user:', user);
   return (
     <div className="dashboard-wrapper">
       <Navbar user={user} onLogout={logout} />

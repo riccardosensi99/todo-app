@@ -18,6 +18,7 @@ router.get('/me', authenticate, async (req: Request, res: Response): Promise<voi
       select: {
         id: true,
         email: true,
+        name: true,
       },
     });
 

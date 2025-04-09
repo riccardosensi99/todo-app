@@ -24,6 +24,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       if (token) {
         try {
           const res = await api.get('/user/me');
+          console.log('LOGIN user:', res.data.user);
           setUser(res.data);
         } catch (err) {
           console.error('Errore nel recupero utente:', err);
@@ -37,8 +38,11 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const login = async (email: string, password: string) => {
     const res = await api.post('/auth/login', { email, password });
     const token = res.data.token;
+    const user = res.data.user;
     localStorage.setItem('token', token);
     setToken(token);
+    setUser(user);
+    console.log('LOGIN user:', res.data.user);
     navigate('/dashboard');
   };
 

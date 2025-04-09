@@ -6,6 +6,7 @@ interface NavbarProps {
 }
 
 export default function Navbar({ user, onLogout }: NavbarProps) {
+  console.log('NAVBAR user:', user);
   return (
     <nav className="navbar">
       <h1>TodoApp</h1>
