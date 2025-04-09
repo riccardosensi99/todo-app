@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { createContext, useContext, useState, useEffect, useCallback, ReactNode } from 'react';
 import api from '../api/axios';
 import { useNavigate } from 'react-router-dom';
 
@@ -19,12 +19,12 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const isAuthenticated = !!token;
 
-  const logout = () => {
+  const logout = useCallback(() => {
     localStorage.removeItem('token');
     setToken(null);
     setUser(null);
     navigate('/');
-  };
+  }, [navigate]);
 
   useEffect(() => {
     const fetchUser = async () => {
