@@ -8,6 +8,7 @@ import './dashboard.css';
 interface Task {
   id: string;
   title: string;
+  description?: string;
   completed: boolean;
 }
 
@@ -15,8 +16,10 @@ export default function Dashboard() {
   const { user, logout } = useAuth();
   const [tasks, setTasks] = useState<Task[]>([]);
   const [newTask, setNewTask] = useState('');
+  const [newDescription, setNewDescription] = useState('');
   const [editingId, setEditingId] = useState<string | null>(null);
   const [editTitle, setEditTitle] = useState('');
+  const [editDescription, setEditDescription] = useState('');
 
   const fetchTasks = async () => {
     try {
@@ -30,9 +33,13 @@ export default function Dashboard() {
   const createTask = async () => {
     if (!newTask.trim()) return;
     try {
-      const res = await api.post('/tasks', { title: newTask });
+      const res = await api.post('/tasks', {
+        title: newTask,
+        description: newDescription,
+      });
       setTasks([...tasks, res.data]);
       setNewTask('');
+      setNewDescription('');
     } catch (err) {
       console.error('Errore nella creazione del task:', err);
     }
@@ -58,10 +65,14 @@ export default function Dashboard() {
 
   const updateTask = async (id: string) => {
     try {
-      const res = await api.put(`/tasks/${id}`, { title: editTitle });
+      const res = await api.put(`/tasks/${id}`, {
+        title: editTitle,
+        description: editDescription,
+      });
       setTasks(tasks.map(t => t.id === id ? res.data : t));
       setEditingId(null);
       setEditTitle('');
+      setEditDescription('');
     } catch (err) {
       console.error('Errore durante l\'aggiornamento:', err);
     }
@@ -73,7 +84,7 @@ export default function Dashboard() {
 
   const pendingTasks = tasks.filter(t => !t.completed);
   const completedTasks = tasks.filter(t => t.completed);
-  console.log('DASHBOARD user:', user);
+
   return (
     <div className="dashboard-wrapper">
       <Navbar user={user} onLogout={logout} />
@@ -85,9 +96,15 @@ export default function Dashboard() {
           <div className="new-task-input">
             <input
               type="text"
-              placeholder="Aggiungi un nuovo task"
+              placeholder="Titolo del task"
               value={newTask}
               onChange={(e) => setNewTask(e.target.value)}
+            />
+            <input
+              type="text"
+              placeholder="Descrizione (opzionale)"
+              value={newDescription}
+              onChange={(e) => setNewDescription(e.target.value)}
             />
             <button onClick={createTask} className="add-btn">+</button>
           </div>
@@ -98,17 +115,35 @@ export default function Dashboard() {
               <li key={task.id} className="todo-item">
                 {editingId === task.id ? (
                   <>
+                    <div className="edit-mode-indicator">✎ Modifica attiva</div>
                     <input
+                      className="task-edit-input"
+                      type="text"
                       value={editTitle}
                       onChange={(e) => setEditTitle(e.target.value)}
+                      placeholder="Titolo"
                     />
-                    <button onClick={() => updateTask(task.id)} title="Salva">
-                      <Save size={18} />
-                    </button>
+                    <input
+                      className="task-edit-input"
+                      type="text"
+                      value={editDescription}
+                      onChange={(e) => setEditDescription(e.target.value)}
+                      placeholder="Descrizione"
+                    />
+                    <div className="task-actions">
+                      <button onClick={() => updateTask(task.id)} title="Salva">
+                        <Save size={18} />
+                      </button>
+                    </div>
                   </>
                 ) : (
                   <>
-                    {task.title}
+                    <div className="task-details">
+                      <span className="task-title">{task.title}</span>
+                      {task.description && (
+                        <span className="task-description">{task.description}</span>
+                      )}
+                    </div>
                     <div className="task-actions">
                       <button onClick={() => completeTask(task.id)} title="Completa">
                         <Check size={18} />
@@ -116,6 +151,7 @@ export default function Dashboard() {
                       <button onClick={() => {
                         setEditingId(task.id);
                         setEditTitle(task.title);
+                        setEditDescription(task.description || '');
                       }} title="Modifica">
                         <Edit size={18} />
                       </button>
@@ -138,7 +174,12 @@ export default function Dashboard() {
               <ul className="todo-list completed">
                 {completedTasks.map((task) => (
                   <li key={task.id} className="todo-item">
-                    {task.title}
+                    <div className="task-details">
+                      <span className="task-title">{task.title}</span>
+                      {task.description && (
+                        <span className="task-description">{task.description}</span>
+                      )}
+                    </div>
                     <div className="task-actions">
                       <button onClick={() => deleteTask(task.id)} title="Elimina">
                         <Trash2 size={18} />
