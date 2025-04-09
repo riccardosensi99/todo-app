@@ -1,0 +1,5 @@
+# URL del database SQLite locale (solo per sviluppo locale)
+DATABASE_URL="file:./dev.db"
+
+# Segreto usato per firmare i token JWT
+JWT_SECRET="65d137cd33f4d439117c942b1d8af219220641d65a22f77fcb5455fafc16560c"
