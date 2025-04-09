@@ -1,7 +1,0 @@
-[build]
-  base = "client"
-  publish = "client/dist"
-  command = "npm run build"
-
-[context.production.environment]
-  VITE_API_URL = "https://todo-app-production-d6bd.up.railway.app/api"
