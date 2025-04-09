@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import * as authService from '../services/auth.service';
 
 export const register = async (req: Request, res: Response) => {
+  console.log('Richiesta di registrazione:', req.body);
   const { email, name, password } = req.body;
   try {
     const user = await authService.register(email, name, password);

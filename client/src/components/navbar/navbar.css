@@ -1,0 +1,15 @@
+.navbar {
+    background-color: #f7f7f7;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .navbar-right {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+  

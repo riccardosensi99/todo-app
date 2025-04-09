@@ -5,7 +5,11 @@ import { loginSchema, registerSchema } from '../validations/authSchema';
 
 const router = Router();
 
-router.post('/register', validate(registerSchema), authController.register);
+router.post('/register', (req, res, next) => {
+  console.log('➡️ Middleware chiamato, dati ricevuti:', req.body); 
+  next();
+}, validate(registerSchema), authController.register);
+
 router.post('/login', validate(loginSchema), authController.login);
 
 export default router;
