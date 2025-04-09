@@ -1,20 +1,20 @@
 import './navbar.css';
-import { useAuth } from '../../context/AuthContext';
 
-export default function Navbar() {
-  const { user, logout } = useAuth();
+interface NavbarProps {
+  user: { name: string };
+  onLogout: () => void;
+}
 
+export default function Navbar({ user, onLogout }: NavbarProps) {
   return (
     <nav className="navbar">
       <h1>TodoApp</h1>
       {user && (
         <div className="navbar-right">
-          <span>{user.email}</span>
-          <button onClick={logout}>Logout</button>
+          <span>Ciao, {user.name}</span>
+          <button onClick={onLogout}>Logout</button>
         </div>
       )}
     </nav>
   );
 }
-
-export {};

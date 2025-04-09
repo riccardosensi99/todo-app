@@ -1,15 +1,111 @@
 .navbar {
-    background-color: #f7f7f7;
-    padding: 1rem 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  .navbar-right {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-  }
-  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1f1f1f;
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.navbar h1 {
+  color: #ffffff;
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-right span {
+  color: #ffffff;
+  margin-right: 1rem;
+}
+
+.navbar-right button {
+  padding: 0.5rem 1rem;
+  background-color: #3f51b5;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.navbar-right button:hover {
+  background-color: #5c6bc0;
+}
+
+/* dashboard.css */
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  background-color: #121212;
+  min-height: 100vh;
+}
+
+.task-section {
+  width: 100%;
+  max-width: 900px;
+  background-color: #1e1e1e;
+  border-radius: 8px;
+  padding: 2rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.task-section h2 {
+  color: #ffffff;
+  margin-bottom: 1rem;
+}
+
+.new-task-form {
+  display: flex;
+  margin-bottom: 1rem;
+}
+
+.new-task-form input {
+  flex: 1;
+  padding: 0.5rem;
+  border: 1px solid #333;
+  border-radius: 4px;
+  background-color: #2a2a2a;
+  color: #ffffff;
+}
+
+.new-task-form button {
+  padding: 0.5rem 1rem;
+  margin-left: 0.5rem;
+  background-color: #3f51b5;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.new-task-form button:hover {
+  background-color: #5c6bc0;
+}
+
+.task-list {
+  list-style: none;
+  padding: 0;
+}
+
+.task-list li {
+  padding: 1rem;
+  border-bottom: 1px solid #333;
+  color: #ffffff;
+}
+
+.task-list li:last-child {
+  border-bottom: none;
+}
+
+.task-list li.completed {
+  text-decoration: line-through;
+  color: #888;
+}

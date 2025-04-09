@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import api from '../../api/axios';
+import Navbar from '../../components/navbar/Navbar';
 import './dashboard.css';
 
 interface Task {
@@ -39,32 +40,32 @@ export default function Dashboard() {
   }, []);
 
   return (
-    <div className="dashboard-container">
-      <header className="dashboard-header">
-        <h1>Ciao, {user?.email}</h1>
-        <button onClick={logout}>Logout</button>
-      </header>
+    <div className="dashboard-wrapper">
+      <Navbar user={user} onLogout={logout} />
+      <main className="dashboard-main">
+        <div className="todo-container">
+          <h1 className="todo-title">Todo App</h1>
+          <div className="new-task-input">
+            <input
+              type="text"
+              placeholder="Aggiungi un nuovo task"
+              value={newTask}
+              onChange={(e) => setNewTask(e.target.value)}
+            />
+            <button onClick={createTask} className="add-btn">+</button>
+          </div>
 
-      <section className="task-section">
-        <h2>I tuoi task</h2>
-        <div className="new-task-form">
-          <input
-            type="text"
-            placeholder="Nuovo task..."
-            value={newTask}
-            onChange={(e) => setNewTask(e.target.value)}
-          />
-          <button onClick={createTask}>Crea</button>
+          <ul className="todo-list">
+            {tasks.map((task) => (
+              <li key={task.id} className="todo-item">
+                {task.title}
+              </li>
+            ))}
+          </ul>
+
+          <p className="pending-text">Hai {tasks.length} task da completare</p>
         </div>
-
-        <ul className="task-list">
-          {tasks.map((task) => (
-            <li key={task.id} className={task.completed ? 'completed' : ''}>
-              {task.title}
-            </li>
-          ))}
-        </ul>
-      </section>
+      </main>
     </div>
   );
 }

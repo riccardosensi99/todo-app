@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import api from '../../api/axios';
 import { useNavigate } from 'react-router-dom';
-import './register.css';
+import '../login/login.css';
 
 export default function Register() {
   const navigate = useNavigate();
@@ -12,7 +12,6 @@ export default function Register() {
   const [success, setSuccess] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
-    console.log({ name, email, password });
     e.preventDefault();
     setError(null);
     setSuccess(null);
@@ -28,36 +27,38 @@ export default function Register() {
 
   return (
     <div className="register-container">
-      <h2>Registrati</h2>
-      <form className="register-form" onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Nome"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          required
-        />
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <button type="submit">Crea account</button>
-        {error && <p className="error">{error}</p>}
-        {success && <p className="success">{success}</p>}
-      </form>
-      <p className="link">
-        Hai già un account? <a href="/">Accedi</a>
-      </p>
+      <div className="register-wrapper">
+        <h2>Registrati</h2>
+        <form className="register-form" onSubmit={handleSubmit}>
+          <input
+            type="text"
+            placeholder="Nome"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          <button type="submit">Crea account</button>
+          {error && <p className="error">{error}</p>}
+          {success && <p className="success">{success}</p>}
+        </form>
+        <p className="link">
+          Hai già un account? <a href="/">Accedi</a>
+        </p>
+      </div>
     </div>
   );
 }
