@@ -5,7 +5,7 @@ Una **todo list moderna** con funzionalità complete, backend robusto e interfac
 ---
 
 ## 🚀 Live Demo
-
+##NB ora il backend non è online quindi non risponde.
 👉 **Frontend**: [todo-app su Netlify](https://mellow-blini-1f7e42.netlify.app)  
 👉 **Backend**: deploy su Railway (API private)
 
